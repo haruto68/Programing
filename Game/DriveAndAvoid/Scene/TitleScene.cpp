@@ -3,7 +3,7 @@
 #include"DxLib.h"
 
 TitleScene::TitleScene() : background_image(NULL),
-menu_image(NULL), cursor_image(NULL), menu_cursor(NULL)
+menu_image(NULL), cursor_image(NULL), menu_cursor(0)
 {
 
 }
@@ -17,9 +17,9 @@ TitleScene::~TitleScene()
 void TitleScene::Initialize()
 {
 	//画像の読み込み
-	background_image = LoadGraph("Resource/images/Title/bmp");
+	background_image = LoadGraph("Resource/images/Title.bmp");
 	menu_image = LoadGraph("Resource/images/menu.bmp");
-	cursor_image = LoadGraph("Resoource/images/cone.bmp");
+	cursor_image = LoadGraph("Resource/images/cone.bmp");
 
 	//エラーチェック
 	if (background_image == -1)
@@ -51,7 +51,7 @@ eSceneType TitleScene::Update()
 	}
 
 	//カーソル上移動
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_DOWN))
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_UP))
 	{
 		menu_cursor--;
 		//1番上に到達したら、1番下にする
