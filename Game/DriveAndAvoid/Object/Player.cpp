@@ -136,6 +136,12 @@ Vector2D Player::GetBoxSize() const
 	return this->speed;
 }
 
+//‘¬‚³æ“¾ˆ—
+float Player::GetSpeed() const
+{
+	return this->speed;
+}
+
 //”R—¿æ“¾ˆ—
 float Player::GetFuel() const
 {
