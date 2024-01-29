@@ -21,7 +21,7 @@ void Player::Initialize()
 	box_size = Vector2D(31.0f, 60.0f);
 	angle = 0.0f;
 	speed = 3.0f;
-	hp = 1000;
+	hp = 10;
 	fuel = 20000;
 	barrier_count = 3;
 
@@ -38,7 +38,7 @@ void Player::Initialize()
 //更新処理
 void Player::Update()
 {
-	//操作可能状態であれば、自信を回転させる
+	//操作不可能状態であれば、自信を回転させる
 	if (!is_active)
 	{
 		angle += DX_PI_F / 24.0f;
@@ -192,6 +192,17 @@ void Player::Movement()
 		move += Vector2D(0.0f, 1.0f);
 	}
 
+	if (InputControl::GetLeftStick().x < -0.2)
+	{
+		angle = -DX_PI_F / 18;
+	}
+	if (InputControl::GetLeftStick().x > 0.2)
+	{
+		angle = DX_PI_F / 18;
+	}
+
+	move += InputControl::GetLeftStick();
+
 	location += move;
 
 	//画面外に行かないように制限する
@@ -211,8 +222,8 @@ void Player::Acceleration()
 		speed -= 1.0f;
 	}
 
-	//LBボタンが押されたら、減速する
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed > 1.0f)
+	//RBボタンが押されたら、加速する
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed < 100.0f)
 	{
 		speed += 1.0f;
 	}

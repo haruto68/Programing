@@ -32,7 +32,7 @@ void RankingInputScene::Initialize()
 	//リザルトデータを取得する
 	FILE* fp = nullptr;
 	//ファイルオープン
-	errno_t result = fopen_s(&fp, "Resource/dat/result_dat.csv", "r");
+	errno_t result = fopen_s(&fp, "Resource/dat/result_data.csv", "r");
 	//エラーチェック
 	if (result != 0)
 	{
@@ -100,11 +100,11 @@ void RankingInputScene::Draw() const
 	{
 		if (cursor_x == 0)
 		{
-			DrawBox(35, 400, 35 + font_size * 2, 400 + font_size, GetColor(255, 255, 255), FALSE);
+			DrawBox(35, 400, 30 + font_size * 2, 400 + font_size, GetColor(255, 255, 255), FALSE);
 		}
 		else
 		{
-			DrawBox(0, 0, font_size, font_size, GetColor(255, 255, 255), FALSE);
+			DrawBox(85, 400, 75 + font_size * 2, 400 + font_size, GetColor(255, 255, 255), FALSE);
 		}
 	}
 }
@@ -142,6 +142,11 @@ bool RankingInputScene::InputName()
 		{
 			cursor_x = 12;
 		}
+
+		if (cursor_y == 4)
+		{
+			cursor_x = 0;
+		}
 	}
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_RIGHT))
 	{
@@ -152,6 +157,11 @@ bool RankingInputScene::InputName()
 		else
 		{
 			cursor_x = 0;
+		}
+
+		if (cursor_y == 4)
+		{
+			cursor_x = 1;
 		}
 	}
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_UP))
@@ -166,12 +176,15 @@ bool RankingInputScene::InputName()
 		if (cursor_y < 4)
 		{
 			cursor_y++;
+
 			if (cursor_y == 4)
 			{
 				cursor_x == 0;
 			}
 		}
 	}
+
+
 
 	//カーソル位置の文字を決定する
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_B))
@@ -200,10 +213,12 @@ bool RankingInputScene::InputName()
 			{
 				name[name_num] = '\0';
 				return true;
+
 			}
 			else
 			{
-				name[name_num--] = NULL;
+				name_num--;
+				name[name_num] = NULL;
 			}
 		}
 	}

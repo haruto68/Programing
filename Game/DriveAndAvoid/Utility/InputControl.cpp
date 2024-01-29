@@ -36,11 +36,11 @@ void InputControl::Update()
 	}
 	if (input_state.ThumbLY > 0.0f)
 	{
-		stick[0].x = (float)input_state.ThumbLY / (float)SHRT_MAX;
+		stick[0].y = -((float)input_state.ThumbLY / (float)SHRT_MAX);
 	}
 	else
 	{
-		stick[0].x = -((float)input_state.ThumbLY / (float)SHRT_MIN);
+		stick[0].y = ((float)input_state.ThumbLY / (float)SHRT_MIN);
 	}
 
 	//右スティック入力値の更新(-0.0f～1.0fに範囲を制限する)
@@ -54,11 +54,11 @@ void InputControl::Update()
 	}
 	if (input_state.ThumbRY > 0.0f)
 	{
-		stick[1].x = (float)input_state.ThumbRY / (float)SHRT_MAX;
+		stick[1].y = -((float)input_state.ThumbRY / (float)SHRT_MAX);
 	}
 	else
 	{
-		stick[1].x = -((float)input_state.ThumbRY / (float)SHRT_MIN);
+		stick[1].y = ((float)input_state.ThumbRY / (float)SHRT_MIN);
 	}
 
 }

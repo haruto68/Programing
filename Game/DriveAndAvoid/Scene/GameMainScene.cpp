@@ -142,10 +142,13 @@ void GameMainScene::Draw() const
 	DrawFormatString(510, 20, GetColor(0, 0, 0), "ハイスコア");
 	DrawFormatString(560, 40, GetColor(255, 255, 255), "%08d",high_score);
 	DrawFormatString(510, 80, GetColor(0, 0, 0), "避けた数");
+
 	for (int i = 0; i < 3; i++)
 	{
 		DrawRotaGraph(523 + (i * 50), 120, 0.3, 0, enemy_image[i], TRUE, FALSE);
 		DrawFormatString(510 + (i * 50), 140, GetColor(255, 255, 255), "%03d", enemy_conut[i]);
+	}
+
 		DrawFormatString(510, 200, GetColor(0, 0, 0), "走行距離");
 		DrawFormatString(555, 220, GetColor(255, 255, 255), "%08d", mileage / 10);
 		DrawFormatString(510, 240, GetColor(0, 0, 0), "スピード");
@@ -170,7 +173,6 @@ void GameMainScene::Draw() const
 		DrawFormatStringF(fx, fy, GetColor(0, 0, 0), "PLAYER HP");
 		DrawBoxAA(fx, fy + 20.0f, fx + (player->GetHp() * 100 / 1000), fy + 40.0f, GetColor(255, 0, 0), TRUE);
 		DrawBoxAA(fx, fy + 20.0f, fx + 100.0f, fy + 40.0f, GetColor(0, 0, 0), FALSE);
-	}
 }
 
 //終了時処理
@@ -185,7 +187,7 @@ void GameMainScene::Finalize()
 	//リザルトデータの書き込み
 	FILE* fp = nullptr;
 	//ファイルオープン
-	errno_t result = fopen_s(&fp, "Resource/dat/result_dat.csv", "w");
+	errno_t result = fopen_s(&fp, "Resource/dat/result_data.csv", "w");
 
 	//エラーチェック
 	if (result != 0)
@@ -196,7 +198,10 @@ void GameMainScene::Finalize()
 	//スコアを保存
 	fprintf(fp, "%d,\n", score);
 
-	//避けた数と得点
+	//走行距離
+	fprintf(fp, "%d,\n", mileage / 10);
+
+	//避けた数
 	for (int i = 0; i < 3; i++)
 	{
 		fprintf(fp, "%d,\n", enemy_conut[i]);

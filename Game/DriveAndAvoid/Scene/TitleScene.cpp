@@ -3,7 +3,7 @@
 #include"DxLib.h"
 
 TitleScene::TitleScene() : background_image(NULL),
-menu_image(NULL), cursor_image(NULL), menu_cursor(0)
+menu_image(NULL), cursor_image(NULL), menu_cursor(0), stickold(0)
 {
 
 }
@@ -59,7 +59,7 @@ eSceneType TitleScene::Update()
 		{
 			menu_cursor = 3;
 		}
-	}
+	}	
 
 	//ƒJ[ƒ\ƒ‹Œˆ’è(Œˆ’è‚µ‚½‰æ–Ê‚É‘JˆÚ‚·‚é)
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_B))
