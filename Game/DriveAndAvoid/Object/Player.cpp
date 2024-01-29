@@ -21,7 +21,7 @@ void Player::Initialize()
 	box_size = Vector2D(31.0f, 60.0f);
 	angle = 0.0f;
 	speed = 3.0f;
-	hp = 10;
+	hp = 1000;
 	fuel = 20000;
 	barrier_count = 3;
 
@@ -223,7 +223,7 @@ void Player::Acceleration()
 	}
 
 	//RBÉ{É^ÉìÇ™âüÇ≥ÇÍÇΩÇÁÅAâ¡ë¨Ç∑ÇÈ
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed < 100.0f)
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed < 20.0f)
 	{
 		speed += 1.0f;
 	}
