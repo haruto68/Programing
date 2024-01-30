@@ -58,3 +58,5 @@ Vector2D Enemy::GetBoxSize() const
 {
 	return box_size;
 }
+
+//ƒKƒ]ƒŠƒ“ƒXƒ^ƒ“ƒh

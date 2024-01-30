@@ -28,6 +28,7 @@ void GameMainScene::Initialize()
 	back_ground = LoadGraph("Resource/images/back.bmp");
 	barrier_image = LoadGraph("Resource/images/barrier.png");
 	int result = LoadDivGraph("Resource/images/car.bmp", 3, 3, 1, 63, 120, enemy_image);
+	
 
 	//エラーチェック
 	if (back_ground == -1)
@@ -100,7 +101,7 @@ eSceneType GameMainScene::Update()
 			if (IsHitCheck(player, enemy[i]))
 			{
 				player->SetActive(false);
-				player->DecreasHp(-50.0f);
+				player->DecreasHp(-100.0f);
 				enemy[i]->Finalize();
 				delete enemy[i];
 				enemy[i] = nullptr;

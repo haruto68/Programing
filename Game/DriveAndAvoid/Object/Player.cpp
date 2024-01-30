@@ -51,7 +51,7 @@ void Player::Update()
 	}
 
 	//”R—¿‚ÌÁ”ï
-	fuel -= speed;
+	fuel -= speed/2;
 
 	//ˆÚ“®ˆ—
 	Movement();
@@ -192,16 +192,26 @@ void Player::Movement()
 		move += Vector2D(0.0f, 1.0f);
 	}
 
+	//
 	if (InputControl::GetLeftStick().x < -0.2)
 	{
+		move += Vector2D(-1.0f, 0.0f);
 		angle = -DX_PI_F / 18;
 	}
 	if (InputControl::GetLeftStick().x > 0.2)
 	{
+		move += Vector2D(1.0f, 0.0f);
 		angle = DX_PI_F / 18;
 	}
+	if (InputControl::GetLeftStick().y < -0.2)
+	{
+		move += Vector2D(0.0f, -1.0f);
+	}
+	if (InputControl::GetLeftStick().y > 0.2)
+	{
+		move += Vector2D(0.0f, 1.0f);
+	}
 
-	move += InputControl::GetLeftStick();
 
 	location += move;
 
